@@ -8,6 +8,9 @@ const logger = require("morgan");
 const methodOverride = require("method-override");
 // connection to our database
 const connectToMongoDB = require("./database/mongodb");
+// jsx template engine
+const engine = require('express-engine-jsx');
+
 
 /*
     8. Set up necessary modules for login sessions
@@ -17,8 +20,9 @@ const connectToMongoDB = require("./database/mongodb");
     Setting up middleware
 */
 // view engine settings
-app.set("view engine", "ejs");
+app.set("view engine", "jsx");
 app.set("views", path.join(__dirname, "views"));
+app.engine('jsx', engine);
 app.use(express.static(path.join(__dirname, "public")));
 // Logging every request in the terminal
 app.use(logger("dev"));
